@@ -12,8 +12,18 @@ import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.Credentials;
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import retrofit2.Call;
+import retrofit2.Response;
+import retrofit2.Callback;
+import retrofit2.Retrofit;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,6 +44,48 @@ public class MainActivity extends AppCompatActivity {
             movies.add(new Movie());
         }
         mAdapter.setMovieList(movies);
+
+        OkHttpClient okHttpClient = new OkHttpClient().newBuilder().addInterceptor(new Interceptor() {
+            @Override
+            public okhttp3.Response intercept(Chain chain) throws IOException {
+                Request originalRequest = chain.request();
+
+                Request.Builder builder = originalRequest.newBuilder().header("Authorization",
+                        Credentials.basic("aUsername", "aPassword"));
+
+                Request newRequest = builder.build();
+                return chain.proceed(newRequest);
+            }
+        }).build();
+
+        Retrofit restAdapter = new Retrofit.Builder()
+                .baseUrl("http://api.themoviedb.org/3")
+                .client(okHttpClient)
+                .build();
+
+        MoviesApiService service = restAdapter.create(MoviesApiService.class);
+
+//        final Callback callback = new Callback< Movie.MovieResult>() {
+//            @Override
+//            public void onResponse(Call<Movie.MovieResult> call, Response response) {
+//                Movie.MovieResult movieResult = call.enqueue();
+//                mAdapter.setMovieList(movieResult.getResults());
+//            }
+//
+//            @Override
+//            public void onFailure(Call call, Throwable t) {
+//
+//            }
+//        }
+
+//        service.getPopularMovies(new Callback() {
+//            @Override
+//            public void onResponse(, Response response) {
+//
+//            }
+//
+//
+//        });
 
     }
 
