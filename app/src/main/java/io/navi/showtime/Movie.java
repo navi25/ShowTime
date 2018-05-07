@@ -28,7 +28,7 @@ public class Movie {
     }
 
     public String getPoster() {
-        return "http://t2.gstatic.com/images?q=tbn:ANd9GcQW3LbpT94mtUG1PZIIzJNxmFX399wr_NcvoppJ82k7z99Hx6in";
+        return Constants.TMDB_IMAGE_PATH + poster;
     }
 
     public void setPoster(String poster) {
