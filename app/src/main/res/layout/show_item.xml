@@ -7,7 +7,7 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/poster"
+        android:id="@+id/iv_show_item_poster"
         android:layout_width="0dp"
         android:layout_height="434dp"
         android:layout_marginStart="8dp"
@@ -24,19 +24,19 @@
         app:srcCompat="@drawable/venom" />
 
     <ImageView
-        android:id="@+id/star"
+        android:id="@+id/iv_show_item_favorite"
         android:layout_width="77dp"
         android:layout_height="85dp"
-        app:layout_constraintBottom_toBottomOf="@+id/poster"
-        app:layout_constraintEnd_toEndOf="@+id/poster"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_show_item_poster"
+        app:layout_constraintEnd_toEndOf="@+id/iv_show_item_poster"
         app:layout_constraintHorizontal_bias="0.98"
-        app:layout_constraintStart_toStartOf="@+id/poster"
-        app:layout_constraintTop_toTopOf="@+id/poster"
+        app:layout_constraintStart_toStartOf="@+id/iv_show_item_poster"
+        app:layout_constraintTop_toTopOf="@+id/iv_show_item_poster"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@mipmap/ic_launcher_foreground" />
 
     <TextView
-        android:id="@+id/rating"
+        android:id="@+id/tv_show_item_rating"
         android:layout_width="55dp"
         android:layout_height="53dp"
         android:layout_marginStart="8dp"
@@ -48,15 +48,15 @@
         android:textColor="@color/colorPrimary"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/star"
-        app:layout_constraintEnd_toStartOf="@+id/star"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_show_item_favorite"
+        app:layout_constraintEnd_toStartOf="@+id/iv_show_item_favorite"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/poster"
-        app:layout_constraintTop_toTopOf="@+id/star"
+        app:layout_constraintStart_toStartOf="@+id/iv_show_item_poster"
+        app:layout_constraintTop_toTopOf="@+id/iv_show_item_favorite"
         app:layout_constraintVertical_bias="0.25" />
 
     <TextView
-        android:id="@+id/title"
+        android:id="@+id/tv_show_item_title"
         android:layout_width="298dp"
         android:layout_height="58dp"
         android:layout_marginStart="4dp"
@@ -68,13 +68,13 @@
         android:textColor="@color/colorPrimary"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/poster"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_show_item_poster"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/star"
+        app:layout_constraintTop_toBottomOf="@+id/iv_show_item_favorite"
         app:layout_constraintVertical_bias="0.105" />
 
     <TextView xmlns:rounded="@drawable/rounded_rect"
-        android:id="@+id/tv_genre_1"
+        android:id="@+id/tv_show_time_genre1"
         android:layout_width="56dp"
         android:layout_height="27dp"
         android:layout_marginStart="8dp"
@@ -87,17 +87,17 @@
         android:text="Action"
         android:textAlignment="center"
         android:textColor="@color/colorPrimary"
-        app:layout_constraintBottom_toBottomOf="@+id/poster"
-        app:layout_constraintEnd_toStartOf="@+id/tv_genre_2"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_show_item_poster"
+        app:layout_constraintEnd_toStartOf="@+id/tv_show_time_genre2"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toEndOf="@+id/poster"
-        app:layout_constraintStart_toStartOf="@+id/poster"
-        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:layout_constraintStart_toEndOf="@+id/iv_show_item_poster"
+        app:layout_constraintStart_toStartOf="@+id/iv_show_item_poster"
+        app:layout_constraintTop_toBottomOf="@+id/tv_show_item_title"
         app:layout_constraintVertical_bias="0.957" />
 
     <TextView
-        android:id="@+id/tv_genre_2"
+        android:id="@+id/tv_show_time_genre2"
         android:layout_width="61dp"
         android:layout_height="28dp"
         android:layout_marginStart="16dp"
@@ -108,9 +108,9 @@
         android:text="Comedy"
         android:textAlignment="center"
         android:textColor="@color/colorPrimary"
-        app:layout_constraintBottom_toBottomOf="@+id/poster"
-        app:layout_constraintStart_toEndOf="@+id/tv_genre_1"
-        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_show_item_poster"
+        app:layout_constraintStart_toEndOf="@+id/tv_show_time_genre1"
+        app:layout_constraintTop_toBottomOf="@+id/tv_show_item_title"
         app:layout_constraintVertical_bias="0.922" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -121,7 +121,7 @@
         app:layout_constraintGuide_end="20dp" />
 
     <Button
-        android:id="@+id/btn_bookNow"
+        android:id="@+id/btn_show_time_bookNow"
         android:layout_width="89dp"
         android:layout_height="44dp"
         android:layout_marginStart="48dp"
@@ -130,7 +130,7 @@
         android:backgroundTint="@color/colorPrimary"
         android:text="Book"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tv_genre_2"
-        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:layout_constraintStart_toEndOf="@+id/tv_show_time_genre2"
+        app:layout_constraintTop_toBottomOf="@+id/tv_show_item_title"
         app:layout_constraintVertical_bias="0.96" />
 </androidx.constraintlayout.widget.ConstraintLayout>
