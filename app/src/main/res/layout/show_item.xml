@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_show_item"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
@@ -16,7 +17,7 @@
         android:background="@drawable/poster_gradient"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
@@ -28,7 +29,7 @@
         android:layout_height="85dp"
         app:layout_constraintBottom_toBottomOf="@+id/poster"
         app:layout_constraintEnd_toEndOf="@+id/poster"
-        app:layout_constraintHorizontal_bias="0.962"
+        app:layout_constraintHorizontal_bias="0.98"
         app:layout_constraintStart_toStartOf="@+id/poster"
         app:layout_constraintTop_toTopOf="@+id/poster"
         app:layout_constraintVertical_bias="0.0"
@@ -41,32 +42,95 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:background="@drawable/concentric_circle"
-        android:text="8.1"
         android:gravity="center"
+        android:text="8.1"
         android:textAlignment="center"
         android:textColor="@color/colorPrimary"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/star"
         app:layout_constraintEnd_toStartOf="@+id/star"
-        app:layout_constraintHorizontal_bias="0.078"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/poster"
-        app:layout_constraintTop_toTopOf="@+id/star" />
+        app:layout_constraintTop_toTopOf="@+id/star"
+        app:layout_constraintVertical_bias="0.25" />
 
     <TextView
         android:id="@+id/title"
         android:layout_width="298dp"
         android:layout_height="58dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:gravity="center"
         android:text="Venom"
         android:textAlignment="center"
+        android:textColor="@color/colorPrimary"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/poster"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/star"
-        app:layout_constraintVertical_bias="0.109" />
+        app:layout_constraintVertical_bias="0.105" />
+
+    <TextView xmlns:rounded="@drawable/rounded_rect"
+        android:id="@+id/tv_genre_1"
+        android:layout_width="56dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/rounded_rect"
+
+        android:backgroundTint="#ffffff"
+        android:gravity="center"
+        android:text="Action"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="@+id/poster"
+        app:layout_constraintEnd_toStartOf="@+id/tv_genre_2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toEndOf="@+id/poster"
+        app:layout_constraintStart_toStartOf="@+id/poster"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:layout_constraintVertical_bias="0.957" />
+
+    <TextView
+        android:id="@+id/tv_genre_2"
+        android:layout_width="61dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/rounded_rect"
+        android:backgroundTint="#ffffff"
+        android:gravity="center"
+        android:text="Comedy"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="@+id/poster"
+        app:layout_constraintStart_toEndOf="@+id/tv_genre_1"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:layout_constraintVertical_bias="0.922" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="20dp" />
+
+    <Button
+        android:id="@+id/btn_bookNow"
+        android:layout_width="89dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:text="Book"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_genre_2"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:layout_constraintVertical_bias="0.96" />
 </androidx.constraintlayout.widget.ConstraintLayout>
