@@ -25,7 +25,10 @@ android {
 }
 
 dependencies {
+
     def moshiVersion="1.8.0"
+    def room_version = "2.1.0-alpha03"
+    def lifecycle_version = "2.0.0"
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -37,8 +40,19 @@ dependencies {
     implementation "com.squareup.moshi:moshi-kotlin:$moshiVersion" 
     kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshiVersion"
 
+    //Room
+    implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.room:room-coroutines:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+
+    // ViewModel and LiveData
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+    kapt "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    testImplementation "androidx.room:room-testing:$room_version"
+    testImplementation "androidx.arch.core:core-testing:$lifecycle_version"
+
 }

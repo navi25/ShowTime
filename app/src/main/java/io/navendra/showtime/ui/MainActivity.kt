@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
             adapter = ParentShowListAdapter(null)
 
         }
-        
+
 
         genreListRecyclerView.apply {
             layoutManager = LinearLayoutManager(this@MainActivity,
