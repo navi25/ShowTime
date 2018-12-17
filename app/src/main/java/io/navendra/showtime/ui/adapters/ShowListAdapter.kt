@@ -1,9 +1,6 @@
 package io.navendra.showtime.ui.adapters
 
-import android.view.GestureDetector
-import android.view.MotionEvent
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -13,8 +10,11 @@ import io.navendra.showtime.data.Show
 import kotlinx.android.synthetic.main.show_item.view.*
 
 class ShowListAdapter(var showList: MutableList<Show>?) : RecyclerView.Adapter<ShowListAdapter.ViewHolder>(){
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val v = LayoutInflater.from(parent.context)
+                .inflate(R.layout.show_item,parent,false)
+        return ViewHolder(v)
     }
 
     override fun getItemCount() = showList?.size ?: 0

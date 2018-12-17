@@ -18,7 +18,8 @@ data class Show(
         @Json(name = "release_date") val releaseData: Date,
         @Json(name = "vote_average") val rating:Double,
         @Json(name = "poster_path") val posterPath: String,
-        @Json(name = "backdrop_path") val backdropPath: String){
+        @Json(name = "backdrop_path") val backdropPath: String) {
 
-    companion object
+  companion object
+
 }
