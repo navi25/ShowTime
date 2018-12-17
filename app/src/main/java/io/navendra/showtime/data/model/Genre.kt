@@ -1,4 +1,4 @@
-package io.navendra.showtime.data
+package io.navendra.showtime.data.model
 
 import android.graphics.Bitmap
 

@@ -6,7 +6,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import io.navendra.showtime.R
-import io.navendra.showtime.data.Show
+import io.navendra.showtime.data.model.Show
 import kotlinx.android.synthetic.main.show_item.view.*
 
 class ShowListAdapter(var showList: MutableList<Show>?) : RecyclerView.Adapter<ShowListAdapter.ViewHolder>(){
@@ -50,11 +50,11 @@ class ShowListAdapter(var showList: MutableList<Show>?) : RecyclerView.Adapter<S
     }
 
 
-    private fun handleItemClick(show:Show){
+    private fun handleItemClick(show: Show){
 
     }
 
-    private fun handleItemDoubleClick(show:Show){
+    private fun handleItemDoubleClick(show: Show){
 
     }
 

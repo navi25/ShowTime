@@ -6,6 +6,7 @@ package io.navendra.showtime
 object AppConstants{
 
     object ShowTable{
+        const val DATABASE_NAME = "show_database"
         const val TABLE_NAME = "show_table"
         const val COLUMN_ID = "Id"
         const val COLUMN_IMDB_ID = "imdb_id"
@@ -20,6 +21,10 @@ object AppConstants{
         const val COLUMN_POSTER_PATH = "poster_path"
         const val COLUMN_BACKDROP_PATH = "backdrop_path"
 
+        object Queries{
+            const val GET_ALL="SELECT * from $TABLE_NAME ORDER BY word ASC"
+            const val DELETE_ALL = "DELETE from $TABLE_NAME"
+        }
      }
 
 }

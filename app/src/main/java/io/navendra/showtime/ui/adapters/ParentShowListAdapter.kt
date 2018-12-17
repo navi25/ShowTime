@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import io.navendra.showtime.R
-import io.navendra.showtime.data.ParentShowList
+import io.navendra.showtime.data.model.ParentShowList
 import kotlinx.android.synthetic.main.rv_shows_view.view.*
 
 class ParentShowListAdapter(private val parentShowLists: MutableList<ParentShowList>?)

@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import io.navendra.showtime.R
-import io.navendra.showtime.data.Genre
+import io.navendra.showtime.data.model.Genre
 import kotlinx.android.synthetic.main.genre_item.view.*
 
 class GenreAdapter(var genreList: MutableList<Genre>?) : RecyclerView.Adapter<GenreAdapter.ViewHolder>(){
