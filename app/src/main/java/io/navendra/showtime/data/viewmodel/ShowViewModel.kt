@@ -20,10 +20,10 @@ class ShowViewModel(application: Application) : AndroidViewModel(application){
     private val scope = CoroutineScope(coroutineContext)
 
     private val showRepository: ShowRepository
-    private val allShows: MutableLiveData<List<Show>>
+    val allShows: MutableLiveData<List<Show>>
 
     init {
-        val showDAO = LocalShowDatabase.getDatabase(application).showDAO()
+        val showDAO = LocalShowDatabase.getDatabase(application, scope).showDAO()
         showRepository = ShowRepository(showDAO)
         allShows = showRepository.allShows
     }

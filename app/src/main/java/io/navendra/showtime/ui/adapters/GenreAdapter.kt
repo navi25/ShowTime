@@ -10,7 +10,10 @@ import io.navendra.showtime.R
 import io.navendra.showtime.data.model.Genre
 import kotlinx.android.synthetic.main.genre_item.view.*
 
-class GenreAdapter(var genreList: MutableList<Genre>?) : RecyclerView.Adapter<GenreAdapter.ViewHolder>(){
+class GenreAdapter : RecyclerView.Adapter<GenreAdapter.ViewHolder>(){
+
+    private var genreList: MutableList<Genre>? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent.context)
                 .inflate(R.layout.genre_item, parent, false)
@@ -25,11 +28,14 @@ class GenreAdapter(var genreList: MutableList<Genre>?) : RecyclerView.Adapter<Ge
         holder.titleView.text = genre.title
     }
 
+    internal fun setData(genres: MutableList<Genre>?) {
+        this.genreList = genres
+        notifyDataSetChanged()
+    }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val imageView: ImageView = itemView.genreImage
         val titleView: TextView = itemView.genreName
     }
-
 
 }

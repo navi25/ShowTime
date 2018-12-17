@@ -11,9 +11,9 @@ import io.navendra.showtime.R
 import io.navendra.showtime.data.model.ParentShowList
 import kotlinx.android.synthetic.main.rv_shows_view.view.*
 
-class ParentShowListAdapter(private val parentShowLists: MutableList<ParentShowList>?)
-    : RecyclerView.Adapter<ParentShowListAdapter.ViewHolder>(){
+class ParentShowListAdapter : RecyclerView.Adapter<ParentShowListAdapter.ViewHolder>(){
 
+    private var parentShowLists: MutableList<ParentShowList>? = null
     private val viewPool = RecyclerView.RecycledViewPool()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -36,11 +36,16 @@ class ParentShowListAdapter(private val parentShowLists: MutableList<ParentShowL
 
         holder.showListRecyclerView.apply {
             setHasFixedSize(true)
-            adapter = ShowListAdapter(parent.shows)
+            adapter = ShowListAdapter()
             layoutManager = childLayoutManager
             setRecycledViewPool(viewPool)
         }
 
+    }
+
+    internal fun setData(parentShowLists: MutableList<ParentShowList>?) {
+        this.parentShowLists = parentShowLists
+        notifyDataSetChanged()
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){

@@ -9,7 +9,9 @@ import io.navendra.showtime.R
 import io.navendra.showtime.data.model.Show
 import kotlinx.android.synthetic.main.show_item.view.*
 
-class ShowListAdapter(var showList: MutableList<Show>?) : RecyclerView.Adapter<ShowListAdapter.ViewHolder>(){
+class ShowListAdapter : RecyclerView.Adapter<ShowListAdapter.ViewHolder>(){
+
+    private var showList: MutableList<Show>? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent.context)
@@ -49,7 +51,6 @@ class ShowListAdapter(var showList: MutableList<Show>?) : RecyclerView.Adapter<S
 
     }
 
-
     private fun handleItemClick(show: Show){
 
     }
@@ -62,7 +63,10 @@ class ShowListAdapter(var showList: MutableList<Show>?) : RecyclerView.Adapter<S
 
     }
 
-
+    internal fun setData(shows: MutableList<Show>?) {
+        this.showList = shows
+        notifyDataSetChanged()
+    }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val posterImageView: ImageView = itemView.iv_show_item_poster
@@ -73,4 +77,5 @@ class ShowListAdapter(var showList: MutableList<Show>?) : RecyclerView.Adapter<S
         val genreTextView2: TextView = itemView.tv_show_time_genre2
         val bookNowButton: Button = itemView.btn_show_time_bookNow
     }
+
 }
