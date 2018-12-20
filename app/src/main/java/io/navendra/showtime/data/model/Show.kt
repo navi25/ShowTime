@@ -21,9 +21,9 @@ data class Show(
         @ColumnInfo(name = ShowConstants.COLUMN_OVERVIEW) val overview: String,
         @ColumnInfo(name = ShowConstants.COLUMN_TAGLINE) val tagline: String,
         @ColumnInfo(name = ShowConstants.COLUMN_ADULT) val adult:Boolean,
-        val genres: Array<Genre>,
-        @ColumnInfo(name = ShowConstants.COLUMN_POSTER_BITMAP) val posterBitmap: Bitmap? = null,
-        @ColumnInfo(name = ShowConstants.COLUMN_RELEASE_DATE) @Json(name = "release_date") val releaseData: Date,
+//        val genres: Array<Genre>,
+//        @ColumnInfo(name = ShowConstants.COLUMN_POSTER_BITMAP) val posterBitmap: Bitmap? = null,
+        @ColumnInfo(name = ShowConstants.COLUMN_RELEASE_DATE) @Json(name = "release_date") val releaseData: String,
         @ColumnInfo(name = ShowConstants.COLUMN_RATING) @Json(name = "vote_average") val rating:Double,
         @ColumnInfo(name = ShowConstants.COLUMN_POSTER_PATH) @Json(name = "poster_path") val posterPath: String,
         @ColumnInfo(name = ShowConstants.COLUMN_BACKDROP_PATH) @Json(name = "backdrop_path") val backdropPath: String) {

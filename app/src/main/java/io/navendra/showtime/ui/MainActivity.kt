@@ -1,6 +1,7 @@
 package io.navendra.showtime.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
@@ -13,6 +14,7 @@ import io.navendra.showtime.data.viewmodel.ShowViewModel
 import io.navendra.showtime.ui.adapters.GenreAdapter
 import io.navendra.showtime.ui.adapters.ParentShowListAdapter
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -33,7 +35,9 @@ class MainActivity : AppCompatActivity() {
             }
 
         })
-        initRecyclers()
+//        val k = Properties().getProperty("tmdb_key")
+//        Log.d("MainActivity",k.toString())
+//        initRecyclers()
 
     }
 
@@ -41,7 +45,7 @@ class MainActivity : AppCompatActivity() {
         showListRecyclerView.apply {
             layoutManager = LinearLayoutManager(this@MainActivity,
                     RecyclerView.VERTICAL, false)
-            adapter = ParentShowListAdapter(null)
+            adapter = ParentShowListAdapter()
 
         }
 
@@ -49,7 +53,7 @@ class MainActivity : AppCompatActivity() {
         genreListRecyclerView.apply {
             layoutManager = LinearLayoutManager(this@MainActivity,
                     RecyclerView.VERTICAL, false)
-            adapter = GenreAdapter(null)
+            adapter = GenreAdapter()
         }
     }
 

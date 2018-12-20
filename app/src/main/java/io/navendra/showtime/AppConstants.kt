@@ -22,9 +22,14 @@ object AppConstants{
         const val COLUMN_BACKDROP_PATH = "backdrop_path"
 
         object Queries{
-            const val GET_ALL="SELECT * from $TABLE_NAME ORDER BY word ASC"
+            const val GET_ALL="SELECT * from $TABLE_NAME ORDER BY $COLUMN_TITLE ASC"
             const val DELETE_ALL = "DELETE from $TABLE_NAME"
         }
      }
+
+    object Network{
+        const val GET_SHOWS = "/movies"
+        const val TMDB_BASE_URL = "https://api.themoviedb.org/3"
+    }
 
 }

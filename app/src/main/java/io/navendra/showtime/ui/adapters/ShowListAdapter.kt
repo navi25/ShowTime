@@ -24,12 +24,15 @@ class ShowListAdapter : RecyclerView.Adapter<ShowListAdapter.ViewHolder>(){
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val show = showList!![position]
 
-        holder.posterImageView.setImageBitmap(show.posterBitmap)
+//        holder.posterImageView.setImageBitmap(show.posterBitmap)
+        holder.posterImageView.setImageResource(R.drawable.venom)
         holder.favouriteImageView.setImageResource(R.drawable.ic_favourite)
         holder.ratingTextView.text = show.rating.toString()
         holder.titleTextView.text = show.title
-        holder.genreTextView1.text = if (show.genres.isNotEmpty()) show.genres[0].title else ""
-        holder.genreTextView2.text = if (show.genres.size >1) show.genres[1].title else ""
+        holder.genreTextView1.text = "Action"
+        holder.genreTextView2.text = "Drama"
+//        holder.genreTextView1.text = if (show.genres.isNotEmpty()) show.genres[0].title else ""
+//        holder.genreTextView2.text = if (show.genres.size >1) show.genres[1].title else ""
         holder.bookNowButton.setOnClickListener { handleBookNowClick(show) }
 
         val doubleTapListener  = object : GestureDetector.OnDoubleTapListener{
