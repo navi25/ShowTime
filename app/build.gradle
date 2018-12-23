@@ -17,7 +17,25 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+        Properties properties = new Properties()
+        properties.load(project.rootProject.file("local.properties").newDataInputStream())
+        def tmdbApiKey = properties.getProperty("tmdb_api_key", "")
+        def tmdbApiVersion = properties.getProperty("tmdb_api_version", "3")
+
+        debug {
+            buildConfigField 'String', "TMDB_API_KEY", tmdbApiKey
+            resValue 'string', "api_key", tmdbApiKey
+
+            buildConfigField 'String', "TMDB_API_VERSION", tmdbApiVersion
+            resValue 'string', "api_version", tmdbApiVersion
+        }
         release {
+            buildConfigField 'String', "TMDB_API_KEY", tmdbApiKey
+            resValue 'string', "api_key", tmdbApiKey
+
+            buildConfigField 'String', "TMDB_API_VERSION", tmdbApiVersion
+            resValue 'string', "api_version", tmdbApiVersion
+
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
@@ -30,11 +48,13 @@ dependencies {
     def room_version = "2.1.0-alpha03"
     def lifecycle_version = "2.0.0"
     def retrofit2_version = "2.5.0"
+    def okhttp3_version = "3.12.0"
+    def kotlinCoroutineVersion = "1.0.1"
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.0.2'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha2'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha3'
     implementation 'com.google.android.material:material:1.0.0'
 
     //Moshi
@@ -54,6 +74,13 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$retrofit2_version"
     implementation "com.squareup.retrofit2:converter-moshi:$retrofit2_version"
     implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2"
+
+    //Okhttp3
+    implementation "com.squareup.okhttp3:okhttp:$okhttp3_version"
+
+    //Kotlin Coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinCoroutineVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinCoroutineVersion"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.1'

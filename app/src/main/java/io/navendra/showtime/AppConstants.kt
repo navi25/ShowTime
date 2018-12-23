@@ -5,6 +5,9 @@ package io.navendra.showtime
 
 object AppConstants{
 
+    var tmdbApiKey = BuildConfig.TMDB_API_KEY
+    var tmdbpApiVersion = BuildConfig.TMDB_API_VERSION
+
     object ShowTable{
         const val DATABASE_NAME = "show_database"
         const val TABLE_NAME = "show_table"
@@ -28,8 +31,15 @@ object AppConstants{
      }
 
     object Network{
+
         const val GET_SHOWS = "/movies"
         const val TMDB_BASE_URL = "https://api.themoviedb.org/3"
+        const val DUMMY_POSTER_URL = "http://t2.gstatic.com/images?q=tbn:ANd9GcQW3LbpT94mtUG1PZIIzJNxmFX399wr_NcvoppJ82k7z99Hx6in"
+
+        const val POPULAR_MOVIE_ENDPOINT = "/movie/popular"
+        const val NOW_PLAYING_MOVIE_ENDPOINT = "/movie/now_playing"
+        const val TOP_RATED_MOVIE_ENDPOINT = "/movie/top_rated"
+        const val UPCOMING_MOVIE_ENDPOINT = "/movie/upcoming"
     }
 
 }
