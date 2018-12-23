@@ -28,7 +28,7 @@ class ParentShowListAdapter : RecyclerView.Adapter<ParentShowListAdapter.ViewHol
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val parent = parentShowLists!![position]
 
-        holder.titleTextView.text = parent.genre.title
+        holder.titleTextView.text = parent.category
 
         val childLayoutManager = LinearLayoutManager( holder.showListRecyclerView.context,
                 LinearLayout.HORIZONTAL, false)

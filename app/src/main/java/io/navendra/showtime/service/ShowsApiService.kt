@@ -1,5 +1,6 @@
 package io.navendra.showtime.service
 
+import androidx.lifecycle.MutableLiveData
 import io.navendra.showtime.data.model.Show
 import kotlinx.coroutines.Deferred
 import retrofit2.Call
@@ -13,15 +14,15 @@ interface ShowsApiService{
     //popular, top rated, now playing, upcoming
 
     @GET(NetworkConstants.POPULAR_MOVIE_ENDPOINT)
-    fun getPopularMovies() : Deferred<Response<List<Show>>>
+    fun getPopularShows() : Deferred<Response<MutableList<Show>>>
 
     @GET(NetworkConstants.NOW_PLAYING_MOVIE_ENDPOINT)
-    fun getNowPlayingMovies() : Deferred<Response<List<Show>>>
+    fun getNowPlayingShows() : Deferred<Response<MutableList<Show>>>
 
     @GET(NetworkConstants.TOP_RATED_MOVIE_ENDPOINT)
-    fun getTopRatedMovies() : Deferred<Response<List<Show>>>
+    fun getTopRatedShows() : Deferred<Response<MutableList<Show>>>
 
     @GET(NetworkConstants.UPCOMING_MOVIE_ENDPOINT)
-    fun getUpcomingMovies() : Deferred<Response<List<Show>>>
+    fun getUpcomingShows() : Deferred<Response<MutableList<Show>>>
 
 }

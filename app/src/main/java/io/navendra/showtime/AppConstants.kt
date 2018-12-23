@@ -6,7 +6,6 @@ package io.navendra.showtime
 object AppConstants{
 
     var tmdbApiKey = BuildConfig.TMDB_API_KEY
-    var tmdbpApiVersion = BuildConfig.TMDB_API_VERSION
 
     object ShowTable{
         const val DATABASE_NAME = "show_database"

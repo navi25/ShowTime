@@ -14,6 +14,9 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
+
+
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -26,15 +29,12 @@ android {
             buildConfigField 'String', "TMDB_API_KEY", tmdbApiKey
             resValue 'string', "api_key", tmdbApiKey
 
-            buildConfigField 'String', "TMDB_API_VERSION", tmdbApiVersion
-            resValue 'string', "api_version", tmdbApiVersion
+
+
         }
         release {
             buildConfigField 'String', "TMDB_API_KEY", tmdbApiKey
             resValue 'string', "api_key", tmdbApiKey
-
-            buildConfigField 'String', "TMDB_API_VERSION", tmdbApiVersion
-            resValue 'string', "api_version", tmdbApiVersion
 
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
