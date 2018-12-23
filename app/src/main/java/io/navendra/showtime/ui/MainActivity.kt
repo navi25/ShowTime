@@ -17,21 +17,29 @@ class MainActivity : AppCompatActivity() {
 
 //    private val profileImage :ImageView = iv_profile
 //    private val genreListRecyclerView : RecyclerView = rv_genre_list
-    private val showListRecyclerView: RecyclerView = rv_show_list
+    private lateinit var showListRecyclerView: RecyclerView
 
     private lateinit var showViewModel: ShowViewModel
 
-    val parentShowListAdapter = ParentShowListAdapter()
+    private lateinit var  parentShowListAdapter : ParentShowListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        showListRecyclerView = rv_show_list
+        parentShowListAdapter = ParentShowListAdapter()
         showViewModel = ViewModelProviders.of(this).get(ShowViewModel::class.java)
-        showViewModel.allShows.observe(this, Observer {shows ->
-            shows?.let {
+
+
+
+       showViewModel.allShows { mutableLiveData ->
+           mutableLiveData.observe(this, Observer {shows ->
+                       shows?.let {
                 parentShowListAdapter.setData(it)
             }
         })
+       }
 
         initRecyclers()
 

@@ -32,7 +32,7 @@ object AppConstants{
     object Network{
 
         const val GET_SHOWS = "/movies"
-        const val TMDB_BASE_URL = "https://api.themoviedb.org/3"
+        const val TMDB_BASE_URL = "https://api.themoviedb.org/3/"
         const val DUMMY_POSTER_URL = "http://t2.gstatic.com/images?q=tbn:ANd9GcQW3LbpT94mtUG1PZIIzJNxmFX399wr_NcvoppJ82k7z99Hx6in"
 
         const val POPULAR_MOVIE_ENDPOINT = "/movie/popular"

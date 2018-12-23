@@ -36,8 +36,8 @@ android {
             buildConfigField 'String', "TMDB_API_KEY", tmdbApiKey
             resValue 'string', "api_key", tmdbApiKey
 
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//            minifyEnabled false
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 }
@@ -77,6 +77,7 @@ dependencies {
 
     //Okhttp3
     implementation "com.squareup.okhttp3:okhttp:$okhttp3_version"
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.11.0'
 
     //Kotlin Coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinCoroutineVersion"
