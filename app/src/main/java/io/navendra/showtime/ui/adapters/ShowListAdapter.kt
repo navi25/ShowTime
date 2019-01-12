@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.squareup.picasso.Picasso
 import io.navendra.showtime.AppConstants.Network as NetworkConstants
 import io.navendra.showtime.R
@@ -31,7 +32,16 @@ class ShowListAdapter : RecyclerView.Adapter<ShowListAdapter.ViewHolder>(){
 
         Log.d("POSTER_URL", "Poster url for ${show.title} is ${posterUrl} ")
 
-        Picasso.get().load(posterUrl).into(holder.posterImageView)
+//        Picasso.get()
+//                .load(posterUrl)
+//                .placeholder(R.drawable.venom)
+//                .into(holder.posterImageView)
+
+        Glide.with(holder.itemView)
+                .load(posterUrl)
+                .into(holder.posterImageView)
+
+
         holder.favouriteImageView.setImageResource(R.drawable.ic_favourite)
         holder.ratingTextView.text = show.rating.toString()
         holder.titleTextView.text = show.title
