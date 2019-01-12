@@ -1,6 +1,8 @@
 package io.navendra.showtime.service
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import io.navendra.showtime.AppConstants
 import io.navendra.showtime.BuildConfig
 import okhttp3.Interceptor
@@ -46,12 +48,15 @@ object RetrofitFactory{
 
 
 
+    private val moshi: Moshi = Moshi.Builder()
+            .add(KotlinJsonAdapterFactory())
+            .build()
 
 
     fun retrofit() : Retrofit = Retrofit.Builder()
             .client(client)
             .baseUrl(NetworkConstants.TMDB_BASE_URL)
-            .addConverterFactory(MoshiConverterFactory.create())
+            .addConverterFactory(MoshiConverterFactory.create(moshi))
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .build()
 

@@ -33,12 +33,13 @@ object AppConstants{
 
         const val GET_SHOWS = "/movies"
         const val TMDB_BASE_URL = "https://api.themoviedb.org/3/"
+        const val TMDB_PHOTO_URL = " http://image.tmdb.org/t/p/w185"
         const val DUMMY_POSTER_URL = "http://t2.gstatic.com/images?q=tbn:ANd9GcQW3LbpT94mtUG1PZIIzJNxmFX399wr_NcvoppJ82k7z99Hx6in"
 
-        const val POPULAR_MOVIE_ENDPOINT = "/3/movie/popular"
-        const val NOW_PLAYING_MOVIE_ENDPOINT = "/3/movie/now_playing"
-        const val TOP_RATED_MOVIE_ENDPOINT = "/3/movie/top_rated"
-        const val UPCOMING_MOVIE_ENDPOINT = "/3/movie/upcoming"
+        const val POPULAR_MOVIE_ENDPOINT = "movie/popular"
+        const val NOW_PLAYING_MOVIE_ENDPOINT = "movie/now_playing"
+        const val TOP_RATED_MOVIE_ENDPOINT = "movie/top_rated"
+        const val UPCOMING_MOVIE_ENDPOINT = "movie/upcoming"
     }
 
 }

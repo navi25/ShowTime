@@ -5,6 +5,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import io.navendra.showtime.R
@@ -13,8 +16,10 @@ import kotlinx.android.synthetic.main.rv_shows_view.view.*
 
 class ParentShowListAdapter : RecyclerView.Adapter<ParentShowListAdapter.ViewHolder>(){
 
+    private var parentLiveData : MutableLiveData<MutableList<ParentShowList>>? = null
     private var parentShowLists: MutableList<ParentShowList>? = null
     private val viewPool = RecyclerView.RecycledViewPool()
+    private var showAdapters = mutableListOf<ShowListAdapter>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.rv_shows_view,
@@ -28,6 +33,7 @@ class ParentShowListAdapter : RecyclerView.Adapter<ParentShowListAdapter.ViewHol
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val parent = parentShowLists!![position]
 
+
         holder.titleTextView.text = parent.category
 
         val childLayoutManager = LinearLayoutManager( holder.showListRecyclerView.context,
@@ -36,7 +42,9 @@ class ParentShowListAdapter : RecyclerView.Adapter<ParentShowListAdapter.ViewHol
 
         holder.showListRecyclerView.apply {
             setHasFixedSize(true)
-            adapter = ShowListAdapter()
+            adapter = ShowListAdapter().apply {
+                setData(parent.shows)
+            }
             layoutManager = childLayoutManager
             setRecycledViewPool(viewPool)
         }
@@ -46,6 +54,11 @@ class ParentShowListAdapter : RecyclerView.Adapter<ParentShowListAdapter.ViewHol
     internal fun setData(parentShowLists: MutableList<ParentShowList>?) {
         this.parentShowLists = parentShowLists
         notifyDataSetChanged()
+    }
+
+    internal fun setLiveData(parentLiveData: MutableLiveData<MutableList<ParentShowList>>){
+        this.parentLiveData = parentLiveData
+        this.parentShowLists = this.parentLiveData?.value
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
