@@ -40,14 +40,15 @@ class ShowRepository(private val api : ShowsApiService, private val scope:Corout
 
 
 
-    fun allShows(callback : (MutableLiveData<MutableList<ParentShowList>>)->Unit)  = scope.launch {
+    suspend fun fetchAllShows() :  MutableList<ParentShowList>  {
 
 
-        val allShows = MutableLiveData<MutableList<ParentShowList>>()
         val list = mutableListOf<ParentShowList>()
 
         val popularShows = nullableShows(ShowType.POPULAR)?.results?.toMutableList()
         val upcomingShows = nullableShows(ShowType.UPCOMING)?.results?.toMutableList()
+        val nowPlayingShows = nullableShows(ShowType.NOW_PLAYING)?.results?.toMutableList()
+        val topRatedShows = nullableShows(ShowType.TOP_RATED)?.results?.toMutableList()
 
 
         //Popular Show List
@@ -58,10 +59,17 @@ class ShowRepository(private val api : ShowsApiService, private val scope:Corout
         val upcomingShowList = ParentShowList(0, "UPCOMING", upcomingShows)
         list.add(upcomingShowList)
 
-        allShows.value = list
+        //Popular Show List
+        val nowPlayingShowList = ParentShowList(0, "NOW PLAYING", nowPlayingShows)
+        list.add(nowPlayingShowList)
+
+        //Upcoming Show List
+        val topRateShowList = ParentShowList(0, "TOP RATED", topRatedShows)
+        list.add(topRateShowList)
 
 
-        callback(allShows)
+        return list
+
     }
 
 }

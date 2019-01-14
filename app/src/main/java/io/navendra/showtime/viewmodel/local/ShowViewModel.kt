@@ -20,12 +20,12 @@
 //    private val scope = CoroutineScope(coroutineContext)
 //
 //    private val showRepository: ShowRepository
-//    val allShows: MutableLiveData<List<Show>>
+//    val fetchAllShows: MutableLiveData<List<Show>>
 //
 //    init {
 //        val showDAO = LocalShowDatabase.getDatabase(application, scope).showDAO()
 //        showRepository = ShowRepository(showDAO)
-//        allShows = showRepository.allShows
+//        fetchAllShows = showRepository.fetchAllShows
 //    }
 //
 //    fun insert(show: Show) = scope.launch(Dispatchers.IO) {

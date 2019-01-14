@@ -14,6 +14,11 @@ object ShowTimeLog{
 
 
     fun d(blockMessage :  ()->String){
+        val stackTrace = Throwable().stackTrace
+        val fileName = stackTrace[1].fileName
+        val lineNumber = stackTrace[1].lineNumber
+
+        val tag= "$fileName - $lineNumber"
         val message = blockMessage.invoke()
         Log.d(tag(),message)
     }

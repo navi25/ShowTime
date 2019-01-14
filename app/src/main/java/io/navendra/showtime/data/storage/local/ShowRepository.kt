@@ -6,7 +6,7 @@
 //
 //class ShowRepository(private val showDAO: ShowDAO){
 //
-//    val allShows : MutableLiveData<List<Show>> = showDAO.getAllShows()
+//    val fetchAllShows : MutableLiveData<List<Show>> = showDAO.getAllShows()
 //
 //    @WorkerThread
 //    suspend fun insert(show: Show){
