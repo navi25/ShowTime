@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import io.navendra.showtime.R
 import io.navendra.showtime.ui.adapters.GenreAdapter
 import io.navendra.showtime.ui.adapters.ParentShowListAdapter
+import io.navendra.showtime.utils.ShowTimeLog
 import io.navendra.showtime.viewmodel.ShowViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -29,19 +30,23 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        showListRecyclerView = rv_show_list
-        parentShowListAdapter = ParentShowListAdapter()
-        showViewModel = ViewModelProviders.of(this).get(ShowViewModel::class.java)
+        ShowTimeLog.d {
+            "Hello World"
+        }
 
-
-       showViewModel.allShows { mutableLiveData ->
-           mutableLiveData.observe(this, Observer {
-                    parentShowListAdapter.setData(it)
-               }
-           )
-       }
-
-        initRecyclers()
+//        showListRecyclerView = rv_show_list
+//        parentShowListAdapter = ParentShowListAdapter()
+//        showViewModel = ViewModelProviders.of(this).get(ShowViewModel::class.java)
+//
+//
+//       showViewModel.allShows { mutableLiveData ->
+//           mutableLiveData.observe(this, Observer {
+//                    parentShowListAdapter.setData(it)
+//               }
+//           )
+//       }
+//
+//        initRecyclers()
     }
 
     private fun initRecyclers(){

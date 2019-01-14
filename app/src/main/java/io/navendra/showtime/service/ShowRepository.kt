@@ -6,25 +6,48 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 
-class ShowRepository(private val api : ShowsApiService, private val scope:CoroutineScope){
+class ShowRepository(private val api : ShowsApiService, private val scope:CoroutineScope) : DataRepository(){
 
 
-    private val popularShows =  api.getPopularShows()
-    private val upcomingShows = api.getUpcomingShows()
+    enum class ShowType{ POPULAR, UPCOMING, TOP_RATED, NOW_PLAYING }
 
-    private val nowPlayingShows = api.getNowPlayingShows()
-    private val topRatedShows =  api.getTopRatedShows()
+    suspend fun nullableShows(type: ShowType) = when(type){
+
+        ShowType.POPULAR ->
+            safeApiCall(
+                call = {api.getPopularShows().await()},
+                errorMessage = "Error Fetching Popular Shows"
+            )
+
+        ShowType.NOW_PLAYING ->
+            safeApiCall(
+                    call = {api.getNowPlayingShows().await()},
+                    errorMessage = "Error Fetching Upcoming Shows"
+            )
+
+        ShowType.TOP_RATED ->
+            safeApiCall(
+                    call = {api.getTopRatedShows().await()},
+                    errorMessage = "Error Fetching Popular Shows"
+            )
+
+        ShowType.UPCOMING ->
+            safeApiCall(
+                    call = {api.getUpcomingShows().await()},
+                    errorMessage = "Error Fetching Upcoming Shows"
+            )
+    }
+
+
 
     fun allShows(callback : (MutableLiveData<MutableList<ParentShowList>>)->Unit)  = scope.launch {
 
-        val popularResponse = popularShows.await().body()
-        val upcomingResponse = upcomingShows.await().body()
 
         val allShows = MutableLiveData<MutableList<ParentShowList>>()
         val list = mutableListOf<ParentShowList>()
 
-        val popularShows = popularResponse?.results?.toMutableList()
-        val upcomingShows = upcomingResponse?.results?.toMutableList()
+        val popularShows = nullableShows(ShowType.POPULAR)?.results?.toMutableList()
+        val upcomingShows = nullableShows(ShowType.UPCOMING)?.results?.toMutableList()
 
 
         //Popular Show List

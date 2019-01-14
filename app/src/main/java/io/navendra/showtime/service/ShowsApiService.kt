@@ -13,18 +13,17 @@ import retrofit2.http.GET
 interface ShowsApiService{
 
     @GET(NetworkConstants.POPULAR_MOVIE_ENDPOINT)
-    fun getPopularShows() : Deferred<Response<ShowResponse>>
+    fun getPopularShows() : Deferred<Response<Result<ShowResponse>>>
 
 
     @GET(NetworkConstants.NOW_PLAYING_MOVIE_ENDPOINT)
-    fun getNowPlayingShows() : Deferred<Response<ShowResponse>>
+    fun getNowPlayingShows() : Deferred<Response<Result<ShowResponse>>>
 
 
     @GET(NetworkConstants.TOP_RATED_MOVIE_ENDPOINT)
-    fun getTopRatedShows() : Deferred<Response<ShowResponse>>
+    fun getTopRatedShows() : Deferred<Response<Result<ShowResponse>>>
 
 
     @GET(NetworkConstants.UPCOMING_MOVIE_ENDPOINT)
-    fun getUpcomingShows() : Deferred<Response<ShowResponse>>
-
+    fun getUpcomingShows() : Deferred<Response<Result<ShowResponse>>>
 }

@@ -11,6 +11,7 @@ import com.squareup.picasso.Picasso
 import io.navendra.showtime.AppConstants.Network as NetworkConstants
 import io.navendra.showtime.R
 import io.navendra.showtime.data.model.Show
+import io.navendra.showtime.utils.ShowTimeLog
 import kotlinx.android.synthetic.main.show_item.view.*
 
 class ShowListAdapter : RecyclerView.Adapter<ShowListAdapter.ViewHolder>(){
@@ -30,7 +31,7 @@ class ShowListAdapter : RecyclerView.Adapter<ShowListAdapter.ViewHolder>(){
 
         val posterUrl = NetworkConstants.TMDB_PHOTO_URL+ show.poster_path
 
-        Log.d("POSTER_URL", "Poster url for ${show.title} is ${posterUrl} ")
+        ShowTimeLog.d{ "Poster url for ${show.title} is ${posterUrl} "}
 
 //        Picasso.get()
 //                .load(posterUrl)
