@@ -3,37 +3,34 @@ package io.navendra.showtime.service
 import android.util.Log
 import io.navendra.showtime.utils.ShowTimeLog
 import retrofit2.Response
+import java.io.IOException
 
 open class DataRepository{
 
-    suspend fun <T : Any> safeApiCall(call: suspend () -> Response<Result<T>>, errorMessage: String): T? {
+    suspend fun <T : Any> safeApiCall(call: suspend () -> Response<T>, errorMessage: String): T? {
 
+        val result : Result<T> = safeApiResult(call,errorMessage)
         var data : T? = null
 
-        try {
-
-            val response = call.invoke()
-
-
-
-            if(response.isSuccessful){
-
-                val result = response.body()
-
-                when(result){
-                    is Result.Success ->
-                        data = result.data
-                    is Result.Error ->
-                        ShowTimeLog.d{ "$errorMessage & Exception - ${result.exception}" }
-
-                }
+        when(result) {
+            is Result.Success ->
+                data = result.data
+            is Result.Error -> {
+                Log.d("1.DataRepository", "$errorMessage & Exception - ${result.exception}")
+                ShowTimeLog.d { "$errorMessage & Exception - ${result.exception}" }
             }
-        }catch (e: Exception){
-            ShowTimeLog.d{ "$errorMessage & Exception - $e" }
         }
+
 
         return data
 
+    }
+
+    private suspend fun <T: Any> safeApiResult(call: suspend ()-> Response<T>, errorMessage: String) : Result<T>{
+        val response = call.invoke()
+        if(response.isSuccessful) return Result.Success(response.body()!!)
+
+        return Result.Error(IOException("Error Occurred during getting safe Api result, Custom ERROR - $errorMessage"))
     }
 
 
