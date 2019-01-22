@@ -10,11 +10,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.RequestManager
 import io.navendra.showtime.R
 import io.navendra.showtime.data.model.ParentShowList
 import kotlinx.android.synthetic.main.rv_shows_view.view.*
 
-class ParentShowListAdapter : RecyclerView.Adapter<ParentShowListAdapter.ViewHolder>(){
+class ParentShowListAdapter(private val glideRequestManager: RequestManager) : RecyclerView.Adapter<ParentShowListAdapter.ViewHolder>(){
 
     private var parentLiveData : MutableLiveData<MutableList<ParentShowList>>? = null
     private var parentShowLists: MutableList<ParentShowList>? = null
@@ -42,7 +43,7 @@ class ParentShowListAdapter : RecyclerView.Adapter<ParentShowListAdapter.ViewHol
 
         holder.showListRecyclerView.apply {
             setHasFixedSize(true)
-            adapter = ShowListAdapter().apply {
+            adapter = ShowListAdapter(glideRequestManager).apply {
                 setData(parent.shows)
             }
             layoutManager = childLayoutManager

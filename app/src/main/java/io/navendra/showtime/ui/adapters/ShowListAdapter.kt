@@ -1,12 +1,15 @@
 package io.navendra.showtime.ui.adapters
 
-import android.util.Log
+import android.graphics.Bitmap
+import android.graphics.drawable.Drawable
 import android.view.*
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.RequestManager
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.squareup.picasso.Picasso
 import io.navendra.showtime.AppConstants.Network as NetworkConstants
 import io.navendra.showtime.R
@@ -14,9 +17,10 @@ import io.navendra.showtime.data.model.Show
 import io.navendra.showtime.utils.ShowTimeLog
 import kotlinx.android.synthetic.main.show_item.view.*
 
-class ShowListAdapter : RecyclerView.Adapter<ShowListAdapter.ViewHolder>(){
+class ShowListAdapter(private val glideRequestManager: RequestManager) : RecyclerView.Adapter<ShowListAdapter.ViewHolder>(){
 
     private var showList: MutableList<Show>? = null
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent.context)
@@ -29,16 +33,28 @@ class ShowListAdapter : RecyclerView.Adapter<ShowListAdapter.ViewHolder>(){
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val show = showList!![position]
 
-        val posterUrl = NetworkConstants.TMDB_PHOTO_URL+ show.poster_path
+        val posterUrl = (NetworkConstants.TMDB_PHOTO_URL+ show.poster_path).trim()
 
-        ShowTimeLog.d{ "Poster url for ${show.title} is ${posterUrl} "}
+        ShowTimeLog.d{ "Poster url for ${show.title} is $posterUrl"}
 
 //        Picasso.get()
 //                .load(posterUrl)
-//                .placeholder(R.drawable.venom)
-//                .into(holder.posterImageView)
+//                .into(object : com.squareup.picasso.Target {
+//                    override fun onBitmapLoaded(bitmap: Bitmap?, from: Picasso.LoadedFrom?) {
+//                        holder.posterImageView.setImageBitmap(bitmap)
+//                    }
+//
+//                    override fun onPrepareLoad(placeHolderDrawable: Drawable?) {}
+//
+//                    override fun onBitmapFailed(e: Exception?, errorDrawable: Drawable?) {
+//                        ShowTimeLog.d { "OnBitmapFailed for url - $posterUrl , Exception - ${e?.message}" }
+//                    }
+//        })
 
-        Glide.with(holder.itemView)
+
+
+//
+        Glide.with(holder.itemView.context)
                 .load(posterUrl)
                 .into(holder.posterImageView)
 

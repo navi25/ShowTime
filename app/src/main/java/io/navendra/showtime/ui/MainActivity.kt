@@ -8,6 +8,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import io.navendra.showtime.R
 import io.navendra.showtime.ui.adapters.GenreAdapter
 import io.navendra.showtime.ui.adapters.ParentShowListAdapter
@@ -32,7 +33,7 @@ class MainActivity : AppCompatActivity() {
 
 
         showListRecyclerView = rv_show_list
-        parentShowListAdapter = ParentShowListAdapter()
+        parentShowListAdapter = ParentShowListAdapter(Glide.with(this))
         showViewModel = ViewModelProviders.of(this).get(ShowViewModel::class.java)
 
 
