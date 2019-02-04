@@ -21,11 +21,16 @@ class ShowViewModel : BaseViewModel(){
     val allShows = MutableLiveData<MutableList<ParentShowList>>()
 
     fun fetchAllShows(){
+
+
+
         scope.launch {
             val allShowsList = repository.fetchAllShows()
             allShows.postValue(allShowsList)
         }
     }
+
+
 
 
 

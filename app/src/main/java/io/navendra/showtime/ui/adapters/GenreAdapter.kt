@@ -24,7 +24,7 @@ class GenreAdapter : RecyclerView.Adapter<GenreAdapter.ViewHolder>(){
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val genre = genreList!![position]
-        holder.imageView.setImageBitmap(genre.imageBitmap)
+        holder.imageView.setImageResource(genre.imageBitmap!!)
         holder.titleView.text = genre.title
     }
 

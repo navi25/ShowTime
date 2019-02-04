@@ -3,13 +3,17 @@ package io.navendra.showtime.ui
 
 import android.os.Bundle
 import android.view.View
+import android.widget.GridLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import io.navendra.showtime.R
+import io.navendra.showtime.data.model.Genre
 import io.navendra.showtime.ui.adapters.GenreAdapter
 import io.navendra.showtime.ui.adapters.ParentShowListAdapter
 import io.navendra.showtime.utils.ShowTimeLog as Log
@@ -37,13 +41,6 @@ class MainActivity : AppCompatActivity() {
         showViewModel = ViewModelProviders.of(this).get(ShowViewModel::class.java)
 
 
-//       showViewModel.allShows { mutableLiveData ->
-//           mutableLiveData.observe(this, Observer {
-//                    parentShowListAdapter.setData(it)
-//               }
-//           )
-//       }
-
         Log.d { "Fetching All Shows from ViewModel" }
         showViewModel.fetchAllShows()
 
@@ -59,15 +56,15 @@ class MainActivity : AppCompatActivity() {
             layoutManager = LinearLayoutManager(this@MainActivity,
                     RecyclerView.VERTICAL, false)
             adapter = parentShowListAdapter
-
+            addItemDecoration(DividerItemDecoration(this@MainActivity, DividerItemDecoration.VERTICAL))
         }
 
-        rv_genre_list.visibility = View.GONE
-//        rv_genre_list.apply {
-//            layoutManager = LinearLayoutManager(this@MainActivity,
-//                    RecyclerView.VERTICAL, false)
-//            adapter = GenreAdapter()
-//        }
+//        rv_genre_list.visibility = View.GONE
+        rv_genre_list.apply {
+            layoutManager = GridLayoutManager(this@MainActivity,2)
+            adapter = GenreAdapter().apply { setData(Genre.getDummy()) }
+
+        }
     }
 
 

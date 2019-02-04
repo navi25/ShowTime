@@ -8,6 +8,9 @@ import android.widget.TextView
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.DividerItemDecoration.HORIZONTAL
+import androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.RequestManager
@@ -48,6 +51,7 @@ class ParentShowListAdapter(private val glideRequestManager: RequestManager) : R
             }
             layoutManager = childLayoutManager
             setRecycledViewPool(viewPool)
+            addItemDecoration(DividerItemDecoration(holder.itemView.context, VERTICAL))
         }
 
     }

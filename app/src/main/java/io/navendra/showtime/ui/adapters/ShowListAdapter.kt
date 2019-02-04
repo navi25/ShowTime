@@ -1,6 +1,7 @@
 package io.navendra.showtime.ui.adapters
 
 import android.graphics.Bitmap
+import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.view.*
 import android.widget.Button
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.RequestOptions
 import com.squareup.picasso.Picasso
 import io.navendra.showtime.AppConstants.Network as NetworkConstants
 import io.navendra.showtime.R
@@ -37,29 +39,20 @@ class ShowListAdapter(private val glideRequestManager: RequestManager) : Recycle
 
         ShowTimeLog.d{ "Poster url for ${show.title} is $posterUrl"}
 
-//        Picasso.get()
-//                .load(posterUrl)
-//                .into(object : com.squareup.picasso.Target {
-//                    override fun onBitmapLoaded(bitmap: Bitmap?, from: Picasso.LoadedFrom?) {
-//                        holder.posterImageView.setImageBitmap(bitmap)
-//                    }
-//
-//                    override fun onPrepareLoad(placeHolderDrawable: Drawable?) {}
-//
-//                    override fun onBitmapFailed(e: Exception?, errorDrawable: Drawable?) {
-//                        ShowTimeLog.d { "OnBitmapFailed for url - $posterUrl , Exception - ${e?.message}" }
-//                    }
-//        })
-
-
-
-//
+        holder.favouriteImageView.setImageResource(R.drawable.ic_favourite)
         Glide.with(holder.itemView.context)
                 .load(posterUrl)
+                .apply(
+                    RequestOptions()
+                        .fitCenter()
+                        .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
+                )
                 .into(holder.posterImageView)
 
+        holder.posterImageView.setColorFilter(Color.argb(130, 0, 0, 0))
 
-        holder.favouriteImageView.setImageResource(R.drawable.ic_favourite)
+
+
         holder.ratingTextView.text = show.rating.toString()
         holder.titleTextView.text = show.title
         holder.genreTextView1.text = "Action"
@@ -70,7 +63,7 @@ class ShowListAdapter(private val glideRequestManager: RequestManager) : Recycle
 
         val doubleTapListener  = object : GestureDetector.OnDoubleTapListener{
             override fun onDoubleTap(e: MotionEvent?): Boolean {
-                handleItemDoubleClick(show)
+                handleItemDoubleClick(holder.itemView,show)
                 return true
             }
 
@@ -82,17 +75,17 @@ class ShowListAdapter(private val glideRequestManager: RequestManager) : Recycle
 
         holder.itemView.apply {
             setOnTouchListener { v, event -> doubleTapListener.onDoubleTap(event) }
-            setOnClickListener { handleItemClick(show) }
+            setOnClickListener { handleItemClick(this,show) }
         }
 
     }
 
-    private fun handleItemClick(show: Show){
-
+    private fun handleItemClick(view: View, show: Show){
+        view.findViewById<ImageView>(R.id.iv_show_item_favorite).setColorFilter(Color.RED)
     }
 
-    private fun handleItemDoubleClick(show: Show){
-
+    private fun handleItemDoubleClick(view: View,show: Show){
+//        view.findViewById<ImageView>(R.id.iv_show_item_favorite).setColorFilter(Color.YELLOW)
     }
 
     private fun handleBookNowClick(show: Show){

@@ -1,24 +1,21 @@
 package io.navendra.showtime.utils
 
 import android.util.Log
+import kotlinx.coroutines.Deferred
 
 object ShowTimeLog{
 
-    private val tag = {
+    private fun tag() : String{
         val stackTrace = Throwable().stackTrace
-        val fileName = stackTrace[1].fileName
-        val lineNumber = stackTrace[1].lineNumber
+        val fileName = stackTrace[2].fileName
+        val methodName = stackTrace[2].methodName
+        val lineNumber = stackTrace[2].lineNumber
 
-          "$fileName - $lineNumber"
+         return "$fileName::$methodName, Line - $lineNumber"
     }
 
 
     fun d(blockMessage :  ()->String){
-        val stackTrace = Throwable().stackTrace
-        val fileName = stackTrace[1].fileName
-        val lineNumber = stackTrace[1].lineNumber
-
-        val tag= "$fileName - $lineNumber"
         val message = blockMessage.invoke()
         Log.d(tag(),message)
     }
